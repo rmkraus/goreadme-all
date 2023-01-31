@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"testing"
@@ -45,7 +44,7 @@ func TestCreate(t *testing.T) {
 			require.NoError(t, err)
 			if writeReadmes {
 				// Helper with writing the README files.
-				require.NoError(t, ioutil.WriteFile(readmeFileName(dir), buf.Bytes(), 0664))
+				require.NoError(t, os.WriteFile(readmeFileName(dir), buf.Bytes(), 0664))
 			}
 			assertReadme(t, dir, buf.String())
 		})
@@ -55,14 +54,14 @@ func TestCreate(t *testing.T) {
 func assertReadme(t *testing.T, dir string, got string) {
 	t.Helper()
 
-	want, err := ioutil.ReadFile(readmeFileName(dir))
+	want, err := os.ReadFile(readmeFileName(dir))
 	require.NoError(t, err)
 	assert.Equal(t, string(want), got)
 }
 
 func testDirs(t *testing.T) []string {
 	t.Helper()
-	files, err := ioutil.ReadDir("testdata")
+	files, err := os.ReadDir("testdata")
 	require.NoError(t, err)
 
 	dirs := make([]string, 0, len(files))
@@ -78,7 +77,7 @@ func testDirs(t *testing.T) []string {
 func loadConfig(t *testing.T, dir string) Config {
 	t.Helper()
 	c := Config{}
-	b, err := ioutil.ReadFile(dir + "/goreadme.json")
+	b, err := os.ReadFile(dir + "/goreadme.json")
 	if err != nil {
 		return c
 	}

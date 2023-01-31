@@ -2,8 +2,8 @@ package goreadme
 
 import (
 	"context"
-	"io/ioutil"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/golang/gddo/doc"
@@ -27,7 +27,7 @@ func workaroundLocalSubdirs(p *doc.Package, pkg string) error {
 		return nil // Not local
 	}
 
-	files, err := ioutil.ReadDir(p.ImportPath)
+	files, err := os.ReadDir(p.ImportPath)
 	if err != nil {
 		errors.Wrap(err, "Failed reading import path")
 	}
