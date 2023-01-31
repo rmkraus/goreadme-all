@@ -15,7 +15,6 @@ import (
 // skipDirs contain directories that should not be scanned
 var skipDirs = map[string]bool{
 	"testdata": true,
-	"internal": true,
 }
 
 // subpackagesFetcher fetches sub packages recursively.

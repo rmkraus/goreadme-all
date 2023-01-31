@@ -115,8 +115,8 @@ import (
 
 	"github.com/golang/gddo/doc"
 	"github.com/pkg/errors"
-	"github.com/posener/goreadme/internal/markdown"
-	"github.com/posener/goreadme/internal/template"
+	"github.com/rmkraus/goreadme-all/internal/markdown"
+	"github.com/rmkraus/goreadme-all/internal/template"
 )
 
 // New returns a GoReadme object with a custom client.
